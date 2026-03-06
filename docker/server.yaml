@@ -1,0 +1,27 @@
+server:
+  listen_addr: ":8443"
+  tls_cert_file: "certs/server.crt"
+  tls_key_file:  "certs/server.key"
+  read_timeout:  "30s"
+  write_timeout: "30s"
+  max_batch_size: 1000
+
+database:
+  host:     "timescaledb"          # do not change — this is the Docker service name
+  port:     5432
+  name:     "opensiem"
+  user:     "opensiem"
+  password: "changeme"
+  ssl_mode: "disable"
+  max_open_conns:    25
+  max_idle_conns:    10
+  conn_max_lifetime: "5m"
+
+auth:
+  api_keys:
+    - "a3f8b2c1d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1"
+  mtls_enabled: false
+
+log:
+  level:  "info"
+  format: "json"

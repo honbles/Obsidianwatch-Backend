@@ -1,5 +1,4 @@
 # Binaries
-server
 *.exe
 
 # Certs (never commit private keys)
@@ -9,9 +8,6 @@ certs/
 *.crt
 *.pem
 
-# Go
-go.sum
 
 # Docker override files
 docker-compose.override.yml
-docker/server.yaml
