@@ -141,13 +141,13 @@ backend/
 
 ```bash
 git clone https://github.com/honbles/Seim-Agent.git
-cd Seim-Agent/backend/docker
+cd Seim-Agent/docker
 
 # Create the certs directory that will be mounted into the container
 mkdir -p certs
 ```
 
-Your working directory for all remaining steps is `backend/docker/`.
+Your working directory for all remaining steps is `docker/`.
 
 ---
 
@@ -232,7 +232,7 @@ With this setup, agents only need `ca.crt` — they verify the backend using the
 
 ## 6. Step 3 — Configure the Backend
 
-Edit `backend/docker/server.yaml`. This file is mounted into the running container — changes take effect after a restart.
+Edit `docker/server.yaml`. This file is mounted into the running container — changes take effect after a restart.
 
 **Minimum changes required before first start:**
 
@@ -247,7 +247,7 @@ Pick a strong password. Write it down — you also need it in `docker-compose.ym
 
 ### 2. Set the same password in docker-compose.yml
 
-Open `backend/docker/docker-compose.yml` and update this line to match:
+Open `docker/docker-compose.yml` and update this line to match:
 
 ```yaml
 environment:
@@ -308,7 +308,7 @@ log:
 
 ## 7. Step 4 — Start with Docker Compose
 
-All commands run from `backend/docker/`.
+All commands run from `docker/`.
 
 ### Build and start everything
 
@@ -503,10 +503,10 @@ From the backend server, copy the cert to the Windows machine. How you do this d
 
 ```bash
 # From the backend server (Linux) — SCP to Windows
-scp backend/docker/certs/server.crt Administrator@192.168.1.50:"C:/Program Files/OpenSIEM/Agent/certs/server.crt"
+scp backend/docker/certs/server.crt Administrator@ip:"C:/Program Files/OpenSIEM/Agent/certs/server.crt"
 
 # Or if using CA-signed:
-scp backend/docker/certs/ca.crt Administrator@192.168.1.50:"C:/Program Files/OpenSIEM/Agent/certs/ca.crt"
+scp backend/docker/certs/ca.crt Administrator@ip:"C:/Program Files/OpenSIEM/Agent/certs/ca.crt"
 ```
 
 ### Test the agent connection interactively
