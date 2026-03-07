@@ -75,4 +75,3 @@ SELECT add_retention_policy('events', INTERVAL '90 days', if_not_exists => TRUE)
 -- Community/Enterprise license and is not available in the free Apache edition.
 -- If you upgrade to a licensed version, you can enable it with:
 --   SELECT add_compression_policy('events', INTERVAL '7 days', if_not_exists => TRUE);
-
