@@ -121,10 +121,10 @@ func (db *DB) QueryEvents(ctx context.Context, f QueryFilter) ([]schema.Event, e
 		add("severity >= $%d", f.Severity)
 	}
 	if f.SrcIP != "" {
-		add("src_ip = $%d::inet", f.SrcIP)
+		add("src_ip = $%d", f.SrcIP)
 	}
 	if f.DstIP != "" {
-		add("dst_ip = $%d::inet", f.DstIP)
+		add("dst_ip = $%d", f.DstIP)
 	}
 	if f.UserName != "" {
 		add("user_name ILIKE $%d", "%"+f.UserName+"%")
