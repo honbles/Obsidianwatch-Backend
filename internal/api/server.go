@@ -40,6 +40,7 @@ func New(cfg *config.Config, db *store.DB, logger *slog.Logger) (*Server, error)
 
 	protected := http.NewServeMux()
 	protected.HandleFunc("POST /api/v1/events", handleIngest(db, cfg.Server.MaxBatchSize, logger))
+	protected.HandleFunc("POST /api/v1/agents/location", handleUpdateAgentLocation(db, logger))
 	protected.HandleFunc("GET /api/v1/events", handleQueryEvents(db))
 	protected.HandleFunc("GET /api/v1/agents", handleListAgents(db))
 	protected.HandleFunc("GET /api/v1/agents/{id}", handleGetAgent(db))

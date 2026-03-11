@@ -82,3 +82,15 @@ func (db *DB) GetAgent(ctx context.Context, id string) (*Agent, error) {
 	}
 	return &a, nil
 }
+
+// UpdateAgentLocation stores the latest known position for an agent.
+func (db *DB) UpdateAgentLocation(ctx context.Context, agentID string, lat, lng, accuracy float64, source, city, country string) error {
+	_, err := db.ExecContext(ctx, `
+		UPDATE agents
+		SET lat = $2, lng = $3, location_accuracy = $4,
+		    location_source = $5, location_city = $6, location_country = $7,
+		    location_updated = NOW()
+		WHERE id = $1
+	`, agentID, lat, lng, accuracy, source, city, country)
+	return err
+}
